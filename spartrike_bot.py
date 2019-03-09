@@ -163,4 +163,4 @@ async def rank(ctx):
 	await show_xp(users, ctx.message.author,ctx.message.channel)
 
 
-bot.run('NTM1ODcxNTU4MTAzODU5MjEw.D0l4_Q.z08d9aEgohvATvTzV_LevO_goqk')
+bot.run(os.getenv('TOKEN'))
