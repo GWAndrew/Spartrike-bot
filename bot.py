@@ -128,7 +128,7 @@ async def on_message(message):
 
 	if message.author != bot.user:
 		await update_data(users, message.author)
-		await add_experience(users, message.author, random.randint(15,25))
+		await add_experience(users, message.author, random.randint(6,8))
 		await level_up(users, message.author,message.channel)
 	else :
 		pass
