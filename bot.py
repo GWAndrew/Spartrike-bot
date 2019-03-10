@@ -150,11 +150,14 @@ async def ping(ctx):
 
 @bot.command(pass_context = True)
 async def effacer(ctx, amount=100):
-    channel = ctx.message.channel
-    messages = []
-    async for message in bot.logs_from(channel, limit=int(amount)):
-    	messages.append(message)
-    await bot.delete_messages(messages)
+	if ctx.message.author.server_permissions.administrator:
+	    channel = ctx.message.channel
+	    messages = []
+	    async for message in bot.logs_from(channel, limit=int(amount)):
+	    	messages.append(message)
+	    await bot.delete_messages(messages)
+	else :
+		await bot.send_message(ctx.message.channel, "Tu n'as pas la permission pour effacer un message")
 
 @bot.command(pass_context = True)
 async def rank(ctx):
