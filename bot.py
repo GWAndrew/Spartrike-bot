@@ -10,20 +10,6 @@ from time import sleep
 
 bot = commands.Bot(command_prefix = "s!")
 
-
-#functions
-def progress_bar(pourcent):
-	complete = "█"
-	not_complete = "-"
-
-
-
-
-
-
-
-
-
 @bot.event
 async def on_ready():
 	print ("Le bot est online")
@@ -115,6 +101,7 @@ async def show_xp(ctx, users, user, channel):
     Embed.add_field(name='XP TOTAL :', value='{}'.format(experience), inline=True)
     Embed.add_field(name='PROGRESSION :', value='| {}{} | {} %'.format(complete, not_complete, pourcent_real), inline=False)
     Embed.add_field(name='RESTANT :', value='{} % ({}xp) Restant | {}xp/{}xp'.format(pourcent, xp_needed, experience, xp_next_level), inline=False)
+    Embed.set_footer(text="Informations : Pour gagner de l'experience, il faut tchater. A chaque message, vous pouvez gangner entre 6 et 8 d'experience. Il faut 750xp pour augmenter d'un niveau.")
     await bot.send_message(channel, embed=Embed)
     print ("LEVEL : {} ; XP : {}".format(level,experience))
 
