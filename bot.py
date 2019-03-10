@@ -93,9 +93,10 @@ async def got_role_xp(users, user, member):
 
 
 
-async def show_xp(users, user, channel):
+async def show_xp(ctx, users, user, channel):
     experience = users[user.id]["experience"]
     level = users[user.id]["level"]
+    username = ctx.message.author.name
     lvl_end_first = 250
     xp_next_level = int(lvl_end_first * ((level+level)*1.5))
     xp_last_level = xp_next_level - 750
@@ -163,7 +164,7 @@ async def effacer(ctx, amount=100):
 async def rank(ctx):
 	with open("users.json", "r") as f:
 		users = json.load(f)
-	await show_xp(users, ctx.message.author,ctx.message.channel)
+	await show_xp(ctx, users, ctx.message.author,ctx.message.channel)
 
 
 bot.run(os.getenv('TOKEN'))
