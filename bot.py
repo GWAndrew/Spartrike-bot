@@ -111,7 +111,7 @@ async def on_message(message):
 		await bot.send_message(message.channel, "Spartrike c'est le sang :100: :fire:")
 		print ("Spartrike c'est le sang :100: :fire:")
 
-	with open("users.json", "r") as f:
+	with open("https://github.com/GWAndrew/Spartrike-bot/blob/master/users.json", "r") as f:
 		users = json.load(f)
 
 	if message.author != bot.user:
@@ -121,7 +121,7 @@ async def on_message(message):
 	else :
 		pass
 
-	with open("users.json", "w") as f:
+	with open("https://github.com/GWAndrew/Spartrike-bot/blob/master/users.json", "w") as f:
 		json.dump(users, f)
 
 	if message.content == message.content and message.author != bot.user:
@@ -149,7 +149,7 @@ async def effacer(ctx, amount=100):
 
 @bot.command(pass_context = True)
 async def rank(ctx):
-	with open("users.json", "r") as f:
+	with open("https://github.com/GWAndrew/Spartrike-bot/blob/master/users.json", "r") as f:
 		users = json.load(f)
 	await show_xp(ctx, users, ctx.message.author,ctx.message.channel)
 
