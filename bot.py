@@ -6,7 +6,10 @@ import os
 import random
 import time
 import json
+import myjson
 from time import sleep
+
+url="https://api.myjson.com/bins/jw39p"
 
 bot = commands.Bot(command_prefix = "s!")
 
@@ -25,13 +28,13 @@ async def on_member_join(member):
 	await bot.add_roles(member, role)
 	print ("Role GirlZ and BoyZ a été ajouté à : {}".format(member))
 
-	with open("users.json", "r") as f:
-		users = json.load(f)
+
+	users = json.loads(myjson.get(url))
+
 
 	await update_data(users, member)
 
-	with open("users.json", "w") as f:
-		json.dump(users, f)
+	myjson.store(json.dumps(users), update=url, id_only=True)
 
 async def update_data(users, user):
 	if not user.id in users:
@@ -111,8 +114,7 @@ async def on_message(message):
 		await bot.send_message(message.channel, "Spartrike c'est le sang :100: :fire:")
 		print ("Spartrike c'est le sang :100: :fire:")
 
-	with open("users.json", "r") as f:
-		users = json.load(f)
+	users = json.loads(myjson.get(url))
 
 	if message.author != bot.user:
 		await update_data(users, message.author)
@@ -121,8 +123,7 @@ async def on_message(message):
 	else :
 		pass
 
-	with open("users.json", "w") as f:
-		json.dump(users, f)
+	myjson.store(json.dumps(users), update=url, id_only=True)
 
 	if message.content == message.content and message.author != bot.user:
 		await got_role_xp(users, message.author, message.author)
@@ -149,9 +150,10 @@ async def effacer(ctx, amount=100):
 
 @bot.command(pass_context = True)
 async def rank(ctx):
-	with open("users.json", "r") as f:
-		users = json.load(f)
+	users = json.loads(myjson.get(url))
 	await show_xp(ctx, users, ctx.message.author,ctx.message.channel)
 
 
-bot.run(os.getenv(''))
+
+
+bot.run(os.getenv('TOKEN'))
